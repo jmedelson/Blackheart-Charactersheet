@@ -1,0 +1,82 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <title>Blackheart</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta name="description" content="blackheart character sheet">
+    <meta name="author" content="JME">
+
+    <link rel="stylesheet" href="styles.css?v=1.0">
+    <script src="https://www.gstatic.com/firebasejs/3.5.2/firebase.js"></script>
+    <script
+        src="https://code.jquery.com/jquery-3.5.1.min.js"
+        integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+        crossorigin="anonymous">
+    </script>
+</head>
+
+<body id="body">
+    <div id="overlay">
+        <div id='loading'>
+            <div id='loadDiv' class='dialog'>
+                <span class="dialog__close" id='xbutton'>&#x2715;</span>
+                <h2 class="dialog__title">Load Character</h2>
+                <div class="dialog__content">
+                    <p>Please enter the name of the character you would like to load</p>
+                    <input type="text" list="loadList" name='loadName' id="loadInput">
+                    <datalist id="loadList">
+
+                    </datalist>
+                </div>
+                <button class="dialog__action" onclick="loadData()">Load Character</button>
+            </div>
+        </div>
+    </div>
+    <div class="content" id='main'>
+        <div id='sheet'>
+            <form id='mainForm' onsubmit="event.preventDefault()">
+                <button id='save' type="button" onclick="saveData()">Save</button>
+                <button id='load' type="button" onclick="loadPop()">Load</button>
+                <input type="text" id='name' name='name'>
+                <input type="text" id='pronouns' name='pronouns'>
+                <!-- <input type="text" id='role'> -->
+                <input list="roles" id='role' oninput='onInput()' name='role'>
+                <datalist id="roles">
+                    <option value="The Apothecary">
+                    <option value="The Witch">
+                    <option value="The Hunter">
+                    <option value="The Scavenger">
+                    <option value="The Innkeeper">
+                    <option value="The Troubadour">
+                    <option value="The Farmer">
+                    <option value="The Reverend">
+                    <option value="The Merchant">
+                    <option value="The Butcher">
+                    <option value="The Marshall">
+                    <option value="The Blacksmith">
+                </datalist>
+                <input type="number" id='heart' name='heart'>
+                <input type="number" id='mind' name='mind'>
+                <input type="number" id='soul' name='soul'>
+                <input type="number" id='weird' name='weird'>
+                <textarea  type="text" id='ability' name='ability'></textarea>
+                <input type="checkbox" id="ability-used" name="ability-used" value="ability-used" onclick="checkToggle();">
+                <img src="check.png" alt="check mark" id=check>
+                <textarea  type="text" id='mutations' name='mutations'></textarea>
+                <img src="ss.png" alt="loacations" id='locations'>
+                <textarea  type="text" id="notes" name='notes'></textarea>
+            </form>
+        </div>
+    </div>
+    
+    
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+    
+    <script src="scripts.js"></script>
+
+</body>
+</html>
