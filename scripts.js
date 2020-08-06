@@ -132,7 +132,17 @@ function checkToggle(){
 reportWindowSize()
 window.addEventListener('resize', reportWindowSize);
 function saveData(){
-    // let name = document.getElementById("name")
+    let name = document.getElementById("name")
+    if(name.value.length<1){
+        console.log("name to short")
+        return
+    }
+    let saving = document.getElementById("saving")
+    let iconText = document.getElementById("saveHover")
+    let iconText2 = document.getElementById("saveHover2")
+    saving.className = "fa fa-spinner fa-spin"
+    iconText.textContent = '\u00A0 Saving'
+    iconText2.innerHTML = '<i class="fa fa-spinner fa-spin"></i> Saving'
     // let pronouns = document.getElementById("pronouns")
     // let role = document.getElementById("role")
     // let heart = document.getElementById("heart")
@@ -158,12 +168,19 @@ function saveData(){
     console.log(data)
     if(loaded){
         var update = firebase.database().ref(`cultists/${loaded}`)
-        update.set(data, onSave)
+        update.set(data, onSave).then((snap) => {
+            saving.className = ""
+            iconText.textContent = 'Click To Save'
+            iconText2.innerHTML = 'Save'
+        })
     }else{
         ref.push(data, onSave).then((snap) => {
             const key = snap.key 
             console.log('New key ===', key)
             loaded = key
+            saving.className = ""
+            iconText.textContent = 'Click To Save'
+            iconText2.innerHTML = 'Save'
         });
     }
 }
